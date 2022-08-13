@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "idCategory": "0",
+      "strCategory": "test",
+      "strCategoryDescription": "test",
+      "strCategoryThumb": "test"
+    },
+    {
+      "idCategory": "1",
+      "strCategory": "test",
+      "strCategoryDescription": "test",
+      "strCategoryThumb": "test"
+    },
+    {
+      "idCategory": "2",
+      "strCategory": "test",
+      "strCategoryDescription": "test",
+      "strCategoryThumb": "test"
+    }
+  ]
+}
