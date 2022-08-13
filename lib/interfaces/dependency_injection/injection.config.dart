@@ -10,6 +10,8 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../data/data_sources/c_meal_db_data_source.dart' as _i6;
 import '../../data/data_sources/meal_db_data_source.dart' as _i5;
+import '../../domain/repositories/c_meal_db_repository.dart' as _i8;
+import '../../domain/repositories/meal_db_repository.dart' as _i7;
 import '../http/c_http_client_app.dart' as _i4;
 import '../http/http_client_app.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
@@ -22,5 +24,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i3.HttpClientApp>(() => _i4.CHttpClientApp());
   gh.factory<_i5.MealDBDataSource>(
       () => _i6.CMealDBDataSource(get<_i3.HttpClientApp>()));
+  gh.factory<_i7.MealDBRepository>(
+      () => _i8.CMealDBRepository(get<_i5.MealDBDataSource>()));
   return get;
 }
