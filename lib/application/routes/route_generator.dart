@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../modules/welcome/presentation/presentation.dart';
+import '../../modules/meal/views/views.dart';
+import '../../modules/welcome/views/views.dart';
+
 import 'app_routes.dart';
 
 class RouteGenerator {
@@ -22,6 +24,14 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const NamePage(),
         );
+
+      case AppRoutes.home:
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => HomeView(userName: args),
+          );
+        }
+        return _errorRoute();
 
       default:
         return _errorRoute();

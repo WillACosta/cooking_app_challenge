@@ -7,4 +7,4 @@ import 'injection.config.dart';
 final GetIt serviceLocator = GetIt.instance;
 
 @injectableInit
-Future<void> setUpInjectable() async => $initGetIt(serviceLocator);
+Future<void> configureInjection() async => $initGetIt(serviceLocator);

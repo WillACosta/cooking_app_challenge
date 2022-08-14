@@ -1,7 +1,7 @@
 import 'package:cooking_home/application/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-enum CButtonKind { primary }
+enum CButtonKind { primary, secondary, inactive }
 
 class CButton extends StatelessWidget {
   final CButtonKind kind;

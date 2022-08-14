@@ -107,4 +107,13 @@ final lightTheme = ThemeData(
       ),
     ),
   ),
+  chipTheme: const ChipThemeData(
+    selectedColor: AppColors.secondary,
+    disabledColor: AppColors.surface,
+    pressElevation: 0,
+    elevation: 0,
+    labelStyle: TextStyle(
+      color: AppColors.text,
+    ),
+  ),
 );

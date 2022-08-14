@@ -12,7 +12,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BasePagePadding(
+      body: BaseViewPadding(
         child: SafeArea(
           child: Column(
             children: [
