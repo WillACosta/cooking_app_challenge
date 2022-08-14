@@ -105,22 +105,20 @@ void main() {
 
     group('filterMealsByCategory', () {
       const endpoint = MealResourceEndpoints.filterMeals;
-      const categoryTerm = 'Chicken';
-      const queryParams = {'c': categoryTerm};
 
       test('should verify if get method has successfully called', () async {
         httpStubs.setupHttpClientResponse(
           endpoint,
           fixture(MockMeal.mockMealJSONKey),
-          queryParameters: queryParams,
+          queryParameters: MockMeal.filterCategoryParam,
         );
 
-        await dataSource.filterMealsByCategory(categoryTerm);
+        await dataSource.filterMealsByCategory(MockMeal.categoryTerm);
 
         verify(
           () => httpClient.get(
             endpoint,
-            queryParameters: queryParams,
+            queryParameters: MockMeal.filterCategoryParam,
           ),
         ).called(1);
       });
@@ -130,11 +128,11 @@ void main() {
           endpoint,
           null,
           responseType: ResponseType.error,
-          queryParameters: queryParams,
+          queryParameters: MockMeal.filterCategoryParam,
         );
 
         expect(
-          () => dataSource.filterMealsByCategory(categoryTerm),
+          () => dataSource.filterMealsByCategory(MockMeal.categoryTerm),
           throwsA(isA<HttpException>()),
         );
       });
@@ -146,11 +144,11 @@ void main() {
             endpoint,
             null,
             responseType: ResponseType.failure,
-            queryParameters: queryParams,
+            queryParameters: MockMeal.filterCategoryParam,
           );
 
           expect(
-            () => dataSource.filterMealsByCategory(categoryTerm),
+            () => dataSource.filterMealsByCategory(MockMeal.categoryTerm),
             throwsA(
               isA<HttpRequestFailure>().having(
                 (error) => error.statusCode,
@@ -168,11 +166,11 @@ void main() {
           httpStubs.setupHttpClientResponse(
             endpoint,
             'invalid JSON',
-            queryParameters: queryParams,
+            queryParameters: MockMeal.filterCategoryParam,
           );
 
           expect(
-            () => dataSource.filterMealsByCategory(categoryTerm),
+            () => dataSource.filterMealsByCategory(MockMeal.categoryTerm),
             throwsA(
               isA<JsonDecodeException>(),
             ),
@@ -184,11 +182,11 @@ void main() {
         httpStubs.setupHttpClientResponse(
           endpoint,
           fixture(MockMeal.mockMealCategoriesItemJSONKey),
-          queryParameters: queryParams,
+          queryParameters: MockMeal.filterCategoryParam,
         );
 
         expect(
-          dataSource.filterMealsByCategory(categoryTerm),
+          dataSource.filterMealsByCategory(MockMeal.categoryTerm),
           completion(equals(MockMeal.mealCategoriesItem)),
         );
       });
@@ -196,18 +194,21 @@ void main() {
 
     group('getMealByID', () {
       const endpoint = MealResourceEndpoints.mealByID;
-      const mealID = '1';
-      const queryParams = {'i': mealID};
 
       test('should verify if get method has successfully called', () async {
         httpStubs.setupHttpClientResponse(
           endpoint,
           fixture(MockMeal.mockMealJSONKey),
-          queryParameters: queryParams,
+          queryParameters: MockMeal.getMealByIDParam,
         );
 
-        await dataSource.getMealByID(mealID);
-        verify(() => httpClient.get(endpoint, queryParameters: queryParams));
+        await dataSource.getMealByID(MockMeal.fakeMealID);
+        verify(
+          () => httpClient.get(
+            endpoint,
+            queryParameters: MockMeal.getMealByIDParam,
+          ),
+        );
       });
 
       test('should throws `HttpException` if calls was unsuccessful', () async {
@@ -215,11 +216,11 @@ void main() {
           endpoint,
           null,
           responseType: ResponseType.error,
-          queryParameters: queryParams,
+          queryParameters: MockMeal.getMealByIDParam,
         );
 
         expect(
-          () => dataSource.getMealByID(mealID),
+          () => dataSource.getMealByID(MockMeal.fakeMealID),
           throwsA(isA<HttpException>()),
         );
       });
@@ -231,11 +232,11 @@ void main() {
             endpoint,
             null,
             responseType: ResponseType.failure,
-            queryParameters: queryParams,
+            queryParameters: MockMeal.getMealByIDParam,
           );
 
           expect(
-            () => dataSource.getMealByID(mealID),
+            () => dataSource.getMealByID(MockMeal.fakeMealID),
             throwsA(
               isA<HttpRequestFailure>().having(
                 (error) => error.statusCode,
@@ -253,11 +254,11 @@ void main() {
           httpStubs.setupHttpClientResponse(
             endpoint,
             'invalid JSON',
-            queryParameters: queryParams,
+            queryParameters: MockMeal.getMealByIDParam,
           );
 
           expect(
-            () => dataSource.getMealByID(mealID),
+            () => dataSource.getMealByID(MockMeal.fakeMealID),
             throwsA(
               isA<JsonDecodeException>(),
             ),
@@ -269,11 +270,11 @@ void main() {
         httpStubs.setupHttpClientResponse(
           endpoint,
           fixture(MockMeal.mockMealJSONKey),
-          queryParameters: queryParams,
+          queryParameters: MockMeal.getMealByIDParam,
         );
 
         expect(
-          dataSource.getMealByID(mealID),
+          dataSource.getMealByID(MockMeal.fakeMealID),
           completion(equals(MockMeal.meal)),
         );
       });

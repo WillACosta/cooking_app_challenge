@@ -16,7 +16,25 @@ class CMealDBRepository implements MealDBRepository {
     try {
       return await _dataSource.listAllMealCategories();
     } on Exception {
-      throw MealCategoryFailure();
+      throw MealRepositoryFailure();
+    }
+  }
+
+  @override
+  Future<List<MealCategoryItem>> filterMealsByCategory(String category) async {
+    try {
+      return await _dataSource.filterMealsByCategory(category);
+    } on Exception {
+      throw MealRepositoryFailure();
+    }
+  }
+
+  @override
+  Future<Meal> getMealByID(String id) async {
+    try {
+      return await _dataSource.getMealByID(id);
+    } on Exception {
+      throw MealRepositoryFailure();
     }
   }
 }

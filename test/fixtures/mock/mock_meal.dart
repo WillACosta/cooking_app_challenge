@@ -1,11 +1,17 @@
 import 'package:cooking_home/data/models/models.dart';
 
 abstract class MockMeal {
-  static const baseURL = 'https://www.themealdb.com/api/json/v1/1';
+  static const fakeBaseURL = 'http://mock.api.test';
 
   static const mockMealCategoriesJSONKey = 'meal_categories.json';
   static const mockMealCategoriesItemJSONKey = 'meal_category_item.json';
   static const mockMealJSONKey = 'meal.json';
+
+  static const categoryTerm = 'Chicken';
+  static const filterCategoryParam = {'c': categoryTerm};
+
+  static const fakeMealID = '1';
+  static const getMealByIDParam = {'i': fakeMealID};
 
   static final categories = List.generate(
     3,

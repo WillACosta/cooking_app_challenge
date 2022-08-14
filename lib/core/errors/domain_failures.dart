@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class MealCategoryFailure extends Equatable {
+class MealRepositoryFailure extends Equatable {
   @override
   List<Object?> get props => [];
 }
