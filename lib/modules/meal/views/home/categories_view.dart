@@ -17,6 +17,12 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   int? _selectedCategoryIndex = 0;
 
+  @override
+  void didChangeDependencies() {
+    _store.getAllCategories();
+    super.didChangeDependencies();
+  }
+
   void _handleSelectCategory(bool value, int index) {
     setState(() {
       _selectedCategoryIndex = value ? index : null;

@@ -14,9 +14,7 @@ class MealCategoryStore = _MealCategoryStoreBase with _$MealCategoryStore;
 abstract class _MealCategoryStoreBase with Store {
   final MealDBRepository _repository;
 
-  _MealCategoryStoreBase(this._repository) {
-    _getAllCategories();
-  }
+  _MealCategoryStoreBase(this._repository);
 
   @observable
   MealCategoryUiState _state = MealCategoryInitialState();
@@ -27,8 +25,9 @@ abstract class _MealCategoryStoreBase with Store {
   @action
   void _setState(MealCategoryUiState newState) => _state = newState;
 
-  void _getAllCategories() async {
+  Future<void> getAllCategories() async {
     try {
+      _setState(MealCategoryLoadingState());
       final responseList = await _repository.listAllMealCategories();
       _setState(MealCategorySuccessState(responseList));
     } catch (e) {
