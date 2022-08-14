@@ -1,0 +1,19 @@
+{
+  "meals": [
+    {
+      "strMeal": "0",
+      "strMealThumb": "meal test",
+      "idMeal": "meal test"
+    },
+    {
+      "strMeal": "1",
+      "strMealThumb": "meal test",
+      "idMeal": "meal test"
+    },
+    {
+      "strMeal": "2",
+      "strMealThumb": "meal test",
+      "idMeal": "meal test"
+    }
+  ]
+}

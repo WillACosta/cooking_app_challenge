@@ -14,42 +14,64 @@ class HttpStubs {
     String url,
     dynamic payload, {
     ResponseType responseType = ResponseType.success,
-    Map<String, String>? headers,
+    Map<String, dynamic>? queryParameters,
   }) {
     switch (responseType) {
       case ResponseType.success:
-        when(() => httpClient.get(url)).thenAnswer(
+        when(
+          () => httpClient.get(url, queryParameters: queryParameters),
+        ).thenAnswer(
           (_) async => Response(
             data: payload,
             statusCode: 200,
-            requestOptions: _getRequestOptions(url),
+            requestOptions: _getRequestOptions(
+              url,
+              queryParameters: queryParameters,
+            ),
           ),
         );
         break;
 
       case ResponseType.failure:
-        when(() => httpClient.get(url)).thenAnswer(
+        when(
+          () => httpClient.get(url, queryParameters: queryParameters),
+        ).thenAnswer(
           (_) async => Response(
             data: payload,
             statusCode: 400,
-            requestOptions: _getRequestOptions(url),
+            requestOptions: _getRequestOptions(
+              url,
+              queryParameters: queryParameters,
+            ),
           ),
         );
         break;
 
       case ResponseType.error:
-        when(() => httpClient.get(url)).thenThrow(
-          DioError(requestOptions: _getRequestOptions(url)),
+        when(
+          () => httpClient.get(url, queryParameters: queryParameters),
+        ).thenThrow(
+          DioError(
+            requestOptions: _getRequestOptions(
+              url,
+              queryParameters: queryParameters,
+            ),
+          ),
         );
         break;
     }
   }
 
-  static _getRequestOptions(String url, {String method = 'POST'}) {
+  static _getRequestOptions(
+    String url, {
+    String method = 'GET',
+    Map<String, dynamic>? queryParameters,
+  }) {
     return RequestOptions(
       method: method,
       baseUrl: 'https://mealdb.test/api',
       path: url,
+      queryParameters: queryParameters,
     );
   }
 }

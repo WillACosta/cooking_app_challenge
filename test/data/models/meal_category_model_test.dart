@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cooking_home/data/models/models.dart';
-import 'package:cooking_home/domain/entities/entitiens.dart';
+import 'package:cooking_home/domain/entities/entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../fixtures/fixtures.dart';

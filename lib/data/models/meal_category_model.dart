@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../domain/entities/entitiens.dart';
+import '../../domain/entities/entities.dart';
 
 class MealCategoryModel extends MealCategory {
   const MealCategoryModel({

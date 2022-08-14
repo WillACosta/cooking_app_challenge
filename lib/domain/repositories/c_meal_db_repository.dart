@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../core/errors/domain_failures.dart';
 import '../../data/data_sources/meal_db_data_source.dart';
-import '../entities/meal_category.dart';
+import '../entities/entities.dart';
 import 'meal_db_repository.dart';
 
 @Injectable(as: MealDBRepository)

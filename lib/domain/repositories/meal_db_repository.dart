@@ -1,4 +1,4 @@
-import '../entities/entitiens.dart';
+import '../entities/entities.dart';
 
 abstract class MealDBRepository {
   Future<List<MealCategory>> listAllMealCategories();
