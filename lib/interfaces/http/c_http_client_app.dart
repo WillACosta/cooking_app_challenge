@@ -8,7 +8,7 @@ import 'http_client_app.dart';
 class CHttpClientApp implements HttpClientApp {
   final Dio dioClient = Dio(
     BaseOptions(
-      baseUrl: 'https://www.themealdb.com/api/json/v1/1',
+      baseUrl: 'http://www.themealdb.com/api/json/v1/1/',
       receiveTimeout: 5000,
     ),
   );

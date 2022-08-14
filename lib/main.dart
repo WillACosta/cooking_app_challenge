@@ -6,6 +6,7 @@ import 'interfaces/interfaces.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
+  initLogger();
 
   runApp(const MealApp());
 }
