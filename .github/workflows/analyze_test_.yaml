@@ -1,8 +1,7 @@
 name: Cooking Home App Pull Requests
 on:
   push:
-    branches:
-      branches: [main]
+    branches: [main]
 
 jobs:
   analyze_and_test:
