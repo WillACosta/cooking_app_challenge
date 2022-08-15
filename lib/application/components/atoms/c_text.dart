@@ -69,7 +69,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
-  })  : fontSize = 32,
+  })  : fontSize = 30,
         super(key: key);
 
   const CText.xl(
@@ -87,6 +87,7 @@ class CText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.poppins(
         color: color,
         fontSize: fontSize,

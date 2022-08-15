@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../domain/entities/meal_category.dart';
 import '../../../../interfaces/interfaces.dart';
+import '../../store/meal_category_item/meal_category_item.dart';
 import '../../store/store.dart';
 import 'components/components.dart';
 
@@ -14,19 +16,28 @@ class CategoriesView extends StatefulWidget {
 
 class _CategoriesViewState extends State<CategoriesView> {
   final _store = serviceLocator<MealCategoryStore>();
+  final _mealItemStore = serviceLocator<MealCategoryItemStore>();
 
   int? _selectedCategoryIndex = 0;
 
   @override
   void didChangeDependencies() {
     _store.getAllCategories();
+    _mealItemStore.getAllMealsByCategoryName('Beef');
+
     super.didChangeDependencies();
   }
 
-  void _handleSelectCategory(bool value, int index) {
+  void _handleSelectCategory(
+    bool value,
+    int index,
+    MealCategory category,
+  ) {
     setState(() {
       _selectedCategoryIndex = value ? index : null;
     });
+
+    _mealItemStore.getAllMealsByCategoryName(category.strCategory);
   }
 
   @override
@@ -51,7 +62,11 @@ class _CategoriesViewState extends State<CategoriesView> {
                 id: item.idCategory,
                 description: item.strCategory,
                 isSelected: _selectedCategoryIndex == index,
-                onSelected: (value) => _handleSelectCategory(value, index),
+                onSelected: (value) => _handleSelectCategory(
+                  value,
+                  index,
+                  item,
+                ),
               ),
             );
           }),

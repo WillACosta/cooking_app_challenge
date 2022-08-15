@@ -6,12 +6,21 @@ class ShimmerTile extends StatelessWidget {
   final double height;
   final ShapeBorder shapeBorder;
 
-  ShimmerTile.radiusSquare({
+  ShimmerTile.circular({
     Key? key,
     required this.width,
     required this.height,
   })  : shapeBorder = RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
+        ),
+        super(key: key);
+
+  ShimmerTile.radiusSquare({
+    Key? key,
+    required this.width,
+    required this.height,
+  })  : shapeBorder = RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
         super(key: key);
 

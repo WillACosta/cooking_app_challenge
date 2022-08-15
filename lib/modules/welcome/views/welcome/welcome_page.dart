@@ -16,13 +16,11 @@ class WelcomePage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              Text(
+              const CText.lg(
                 'Faça você \nsuas receitas de \nforma fácil',
-                style: AppTextStyles.headline(
-                  color: AppColors.text,
-                  lineHeight: 1.2,
-                ),
                 textAlign: TextAlign.center,
+                lineHeight: 1.2,
+                fontWeight: FontWeight.w600,
               ),
               const VerticalWhiteSpace(15),
               Lottie.asset(
@@ -31,9 +29,8 @@ class WelcomePage extends StatelessWidget {
                 height: 300,
               ),
               const Spacer(),
-              Text(
+              const CText.xxs(
                 'Encontre aquela deliciosa receita de\nvários locais do mundo para fazer para\n você ou sua família.',
-                style: AppTextStyles.body(color: AppColors.text),
                 textAlign: TextAlign.center,
               ),
               const VerticalWhiteSpace(32),

@@ -13,7 +13,7 @@ class CategorySelectText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         CText.xxs(
-          'O que vamos cozinhar hoje?',
+          'O que vamos fazer hoje?',
           fontWeight: FontWeight.w600,
         ),
         CText.xxxs('Você pode escolher uma das categorias abaixo.'),

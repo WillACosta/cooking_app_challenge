@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../interfaces/http/http_client_app.dart';
+import '../../interfaces/logger/app_logger.dart';
 import '../../core/errors/errors.dart';
 import '../../domain/entities/meal.dart';
 import '../../domain/entities/meal_category.dart';
 import '../../domain/entities/meal_category_item.dart';
-import '../../interfaces/interfaces.dart';
+
 import '../models/models.dart';
 import 'meal_db_data_source.dart';
 import 'meal_resource_endpoints.dart';
