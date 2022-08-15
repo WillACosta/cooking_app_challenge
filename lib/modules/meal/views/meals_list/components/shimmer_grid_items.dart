@@ -10,17 +10,24 @@ class ShimmerGridItems extends StatelessWidget {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 25,
-        crossAxisSpacing: 10,
+        mainAxisSpacing: 5,
+        crossAxisSpacing: 5,
       ),
       itemCount: 10,
       itemBuilder: (_, __) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 5),
-          child: ShimmerTile.radiusSquare(
-            width: 90,
-            height: 100,
-          ),
+        return Column(
+          children: [
+            ShimmerTile.radiusSquare(
+              width: 120,
+              height: 120,
+            ),
+            const VerticalWhiteSpace(5),
+            ShimmerTile.radiusSquare(
+              width: 100,
+              height: 10,
+              radius: 4,
+            ),
+          ],
         );
       },
     );

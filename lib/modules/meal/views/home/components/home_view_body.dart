@@ -56,7 +56,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 return MealsGridBody(meals: state.meals);
               }
 
-              return Container();
+              return const SizedBox.shrink();
             },
           ),
         ),

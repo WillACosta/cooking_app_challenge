@@ -5,10 +5,12 @@ import '../../../../../domain/entities/entities.dart';
 
 class GridItem extends StatelessWidget {
   final MealCategoryItem meal;
+  final bool isDetail;
 
   const GridItem({
     Key? key,
     required this.meal,
+    this.isDetail = false,
   }) : super(key: key);
 
   @override
@@ -22,8 +24,13 @@ class GridItem extends StatelessWidget {
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(top: 4),
-          child: CText.xxxs(meal.strMeal),
+          padding: const EdgeInsets.only(top: 15),
+          child: isDetail
+              ? CText.xs(
+                  meal.strMeal,
+                  fontWeight: FontWeight.bold,
+                )
+              : CText.xxxs(meal.strMeal),
         ),
       ],
     );

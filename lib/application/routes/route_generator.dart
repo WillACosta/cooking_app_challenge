@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/entities.dart';
 import '../../modules/meal/views/views.dart';
 import '../../modules/welcome/views/views.dart';
 
@@ -29,6 +30,14 @@ class RouteGenerator {
         if (args is String) {
           return MaterialPageRoute(
             builder: (_) => HomeView(userName: args),
+          );
+        }
+        return _errorRoute();
+
+      case AppRoutes.mealDetail:
+        if (args is MealCategoryItem) {
+          return MaterialPageRoute(
+            builder: (_) => MealDetailView(meal: args),
           );
         }
         return _errorRoute();

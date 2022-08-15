@@ -13,4 +13,7 @@ abstract class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF111111);
   static const Color error = Color(0xFFB00020);
+
+  static const Color gradientStart = Color(0xFFFAF5F5);
+  static const Color gradientEnd = Color(0xFFF0F0F0);
 }

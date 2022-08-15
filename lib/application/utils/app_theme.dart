@@ -116,4 +116,19 @@ final lightTheme = ThemeData(
       color: AppColors.text,
     ),
   ),
+  checkboxTheme: CheckboxThemeData(
+    fillColor: MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppColors.primary;
+        }
+
+        if (states.contains(MaterialState.disabled)) {
+          return AppColors.surface;
+        }
+
+        return AppColors.primary;
+      },
+    ),
+  ),
 );

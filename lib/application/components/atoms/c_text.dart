@@ -11,6 +11,7 @@ class CText extends StatelessWidget {
   final Color color;
   final TextAlign textAlign;
   final double? lineHeight;
+  final TextDecoration? textDecoration;
 
   const CText.xxxs(
     this.text, {
@@ -19,6 +20,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 12,
         super(key: key);
 
@@ -29,6 +31,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 14,
         super(key: key);
 
@@ -39,6 +42,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 16,
         super(key: key);
 
@@ -49,6 +53,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 20,
         super(key: key);
 
@@ -59,6 +64,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 22,
         super(key: key);
 
@@ -69,6 +75,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 30,
         super(key: key);
 
@@ -79,6 +86,7 @@ class CText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
+    this.textDecoration,
   })  : fontSize = 40,
         super(key: key);
 
@@ -93,6 +101,7 @@ class CText extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
         height: lineHeight,
+        decoration: textDecoration,
       ),
     );
   }

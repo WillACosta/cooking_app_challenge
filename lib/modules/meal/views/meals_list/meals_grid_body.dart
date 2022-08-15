@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../application/routes/routes.dart';
 import '../../../../domain/entities/entities.dart';
 import 'components/grid_item.dart';
 
@@ -20,8 +21,17 @@ class MealsGridBody extends StatelessWidget {
         crossAxisSpacing: 10,
       ),
       itemCount: meals.length,
-      itemBuilder: (context, int index) {
-        return GridItem(meal: meals[index]);
+      itemBuilder: (_, index) {
+        return InkWell(
+          onTap: () => navigateTo(
+            _,
+            routeName: AppRoutes.mealDetail,
+            args: meals[index],
+          ),
+          child: GridItem(
+            meal: meals[index],
+          ),
+        );
       },
     );
   }
