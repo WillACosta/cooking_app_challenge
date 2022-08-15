@@ -12,12 +12,12 @@ class RouteGenerator {
     switch (settings.name) {
       case AppRoutes.initial:
         return MaterialPageRoute(
-          builder: (_) => const WelcomePage(),
+          builder: (_) => const SplashView(),
         );
 
       case AppRoutes.welcome:
         return MaterialPageRoute(
-          builder: (_) => const WelcomePage(),
+          builder: (_) => const WelcomeView(),
         );
 
       case AppRoutes.name:

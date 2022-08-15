@@ -12,7 +12,7 @@ class MealApp extends StatelessWidget {
       title: 'Cooking App',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      initialRoute: AppRoutes.welcome,
+      initialRoute: AppRoutes.initial,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

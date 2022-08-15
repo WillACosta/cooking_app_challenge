@@ -6,8 +6,8 @@ import '../../../../application/components/components.dart';
 import '../../../../application/routes/routes.dart';
 import '../../../../application/utils/utils.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+class WelcomeView extends StatelessWidget {
+  const WelcomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
