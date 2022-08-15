@@ -25,7 +25,11 @@ abstract class _WelcomeStoreBase with Store {
   bool get hasValidUserName =>
       state.userName != null && state.userName!.length >= 3;
 
-  void setUserName(String name) {
+  Future<void> setUserName(String name) async {
+    _setState(const WelcomeUiState(status: UiStatus.loading));
+
+    await Future.delayed(const Duration(seconds: 2));
+
     _setState(WelcomeUiState(
       status: UiStatus.success,
       userName: name,

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import '../../domain/entities/entities.dart';
 
 class MealCategoryModel extends MealCategory {
@@ -18,9 +16,6 @@ class MealCategoryModel extends MealCategory {
       strCategoryDescription: map['strCategoryDescription'] ?? '',
     );
   }
-
-  factory MealCategoryModel.fromJson(String source) =>
-      MealCategoryModel.fromMap(json.decode(source));
 
   static List<MealCategoryModel> fromJsonList(List source) {
     return source.map((e) => MealCategoryModel.fromMap(e)).toList();
