@@ -1,0 +1,57 @@
+name: Cooking Home App Pull Requests
+on:
+  push:
+    branches:
+      branches: [main]
+
+jobs:
+  analyze_and_test:
+    name: flutter analyze and tests
+    runs-on: ubuntu-latest
+
+    env:
+      JAVA_VERSION: "12.x"
+      FLUTTER_VERSION: "3.0.5"
+
+    steps:
+      - name: Get Repository
+        uses: actions/checkout@v2
+
+      - name: Setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v3
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - name: Run Flutter Pub Get
+        run: flutter pub get
+
+      - name: Run Flutter Analyze
+        run: flutter analyze
+
+      - name: Run Flutter formatt code
+        run: flutter format --dry-run --set-exit-if-changed lib/
+      - run: flutter format --dry-run --set-exit-if-changed test/
+
+      - name: Run Flutter Test Coverage
+        run: flutter test --coverage
+      - run: flutter test --machine > test-results.json
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1.4.2
+        with:
+          name: test-results
+          path: test-results.json
+          reporter: flutter-json
+
+      - name: Define min coverage percentage
+        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        with:
+          min_coverage: 70
+
+      - name: Run Flutter Unit Tests
+        run: flutter test
