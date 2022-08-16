@@ -4,7 +4,6 @@ import '../../../../application/aplication.dart';
 import '../../../../domain/entities/entities.dart';
 import '../../../../interfaces/interfaces.dart';
 import '../../store/meal_detail/meal_detail_store.dart';
-import '../meals_list/components/components.dart';
 import 'components/components.dart';
 
 class MealDetailView extends StatefulWidget {
@@ -21,8 +20,7 @@ class MealDetailView extends StatefulWidget {
 
 class _MealDetailViewState extends State<MealDetailView> {
   final _store = serviceLocator<MeaDetailStore>();
-
-  bool _showInstructions = false;
+  late bool _showInstructions;
 
   void _setShowInstructions(bool value) {
     setState(() {
@@ -34,6 +32,7 @@ class _MealDetailViewState extends State<MealDetailView> {
   void initState() {
     super.initState();
 
+    _showInstructions = false;
     _store.getMealByID(widget.meal.idMeal);
   }
 
@@ -47,7 +46,7 @@ class _MealDetailViewState extends State<MealDetailView> {
             const VerticalWhiteSpace(30),
             SizedBox.square(
               dimension: 200,
-              child: GridItem(meal: widget.meal, isDetail: true),
+              child: MealGridItem(meal: widget.meal, isDetail: true),
             ),
             const VerticalWhiteSpace(45),
             // const MealSwitch(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../application/components/components.dart';
+import '../../../../../application/aplication.dart';
 
 class ShimmerGridItems extends StatelessWidget {
   const ShimmerGridItems({Key? key}) : super(key: key);
@@ -8,11 +8,7 @@ class ShimmerGridItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 5,
-      ),
+      gridDelegate: silverGridDelegate,
       itemCount: 10,
       itemBuilder: (_, __) {
         return Column(

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../../application/components/components.dart';
 import '../../../../../domain/entities/entities.dart';
 
-class GridItem extends StatelessWidget {
+class MealGridItem extends StatelessWidget {
   final MealCategoryItem meal;
   final bool isDetail;
 
-  const GridItem({
+  const MealGridItem({
     Key? key,
     required this.meal,
     this.isDetail = false,

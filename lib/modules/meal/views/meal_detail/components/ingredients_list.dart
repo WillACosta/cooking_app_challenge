@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../../application/shared/shared.dart';
+import '../../../../../application/aplication.dart';
 import '../../../store/meal_detail/meal_detail_store.dart';
 import 'components.dart';
 
@@ -35,7 +35,7 @@ class IngredientsList extends StatelessWidget {
                 final currentIngredient = ingredients[index];
                 final currentMeasure = measures[index];
                 final thumbUrl =
-                    '${_store.ingredientBaseURL}/$currentIngredient.png';
+                    '${_store.ingredientImageBaseURL}/$currentIngredient.png';
 
                 return IngredientTile(
                   thumbUrl: thumbUrl,

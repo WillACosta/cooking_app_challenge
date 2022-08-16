@@ -5,21 +5,16 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/entities/entities.dart';
 import '../../interfaces/http/http_client_app.dart';
-import '../../interfaces/logger/app_logger.dart';
 import '../../core/errors/errors.dart';
-
 import '../models/models.dart';
-import 'meal_db_data_source.dart';
-import 'meal_resource_endpoints.dart';
+import './meal_db_data_source.dart';
+import './meal_resource_endpoints.dart';
 
 @Injectable(as: MealDBDataSource)
 class CMealDBDataSource implements MealDBDataSource {
   final HttpClientApp _httpClient;
-  late AppLogger _logger;
 
-  CMealDBDataSource(this._httpClient) {
-    _logger = AppLogger('CMealDBDataSource');
-  }
+  CMealDBDataSource(this._httpClient) {}
 
   @override
   Future<List<MealCategory>> listAllMealCategories() async {
@@ -54,22 +49,17 @@ class CMealDBDataSource implements MealDBDataSource {
     try {
       response = await _httpClient.get(url, queryParameters: queryParameters);
     } catch (e) {
-      _logger.severe('Failed to perform the request', e);
       throw HttpException();
     }
 
     if (response.statusCode != 200) {
-      _logger.severe('Request failed with status code:', response.statusCode);
       throw HttpRequestFailure(response.statusCode!);
     }
 
     try {
       final data = response.data;
-      _logger.fine('Everything ok with request');
-
       return data is Map ? data : json.decode(response.data);
     } catch (e) {
-      _logger.warning('An error was encountered while decoding JSON data', e);
       throw JsonDecodeException();
     }
   }

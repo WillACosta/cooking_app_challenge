@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../application/components/components.dart';
+import '../../../../../application/aplication.dart';
 
 class IngredientTile extends StatefulWidget {
   final String thumbUrl;
