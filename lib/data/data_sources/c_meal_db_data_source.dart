@@ -14,7 +14,7 @@ import './meal_resource_endpoints.dart';
 class CMealDBDataSource implements MealDBDataSource {
   final HttpClientApp _httpClient;
 
-  CMealDBDataSource(this._httpClient) {}
+  CMealDBDataSource(this._httpClient);
 
   @override
   Future<List<MealCategory>> listAllMealCategories() async {
