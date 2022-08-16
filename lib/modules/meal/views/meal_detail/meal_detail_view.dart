@@ -56,20 +56,21 @@ class _MealDetailViewState extends State<MealDetailView> {
                   }
 
                   if (state.status == UiStatus.success) {
-                    return Column(
-                      children: [
-                        const IngredientTile(
-                          thumbUrl: '$ingredientBaseURL/Lime-Small.png',
-                          title: 'Onion',
-                          measure: '1 large',
-                        ),
-                        const IngredientTile(
-                          thumbUrl: '$ingredientBaseURL/Lime-Small.png',
-                          title: 'Onion',
-                          measure: '1 large',
-                        ),
-                        CText.xxs(state.meal!.strArea),
-                      ],
+                    final ingredients = state.meal!.ingredients;
+                    final measures = state.meal!.measures;
+
+                    return ListView.builder(
+                      itemCount: ingredients.length,
+                      itemBuilder: ((context, index) {
+                        final currentIngredient = ingredients[index];
+                        final currentMeasure = measures[index];
+
+                        return IngredientTile(
+                          thumbUrl: '$ingredientBaseURL/$currentIngredient.png',
+                          title: currentIngredient,
+                          measure: currentMeasure,
+                        );
+                      }),
                     );
                   }
 

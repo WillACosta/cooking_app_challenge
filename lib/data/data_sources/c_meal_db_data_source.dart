@@ -3,12 +3,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/entities/entities.dart';
 import '../../interfaces/http/http_client_app.dart';
 import '../../interfaces/logger/app_logger.dart';
 import '../../core/errors/errors.dart';
-import '../../domain/entities/meal.dart';
-import '../../domain/entities/meal_category.dart';
-import '../../domain/entities/meal_category_item.dart';
 
 import '../models/models.dart';
 import 'meal_db_data_source.dart';
@@ -47,7 +45,10 @@ class CMealDBDataSource implements MealDBDataSource {
     return MealModel.fromMap(responseMap['meals'][0]);
   }
 
-  _get(String url, [Map<String, dynamic>? queryParameters]) async {
+  Future<Map<String, dynamic>> _get(
+    String url, [
+    Map<String, dynamic>? queryParameters,
+  ]) async {
     Response response;
 
     try {
@@ -66,7 +67,7 @@ class CMealDBDataSource implements MealDBDataSource {
       final data = response.data;
       _logger.fine('Everything ok with request');
 
-      return data is Map ? data : json.decode(response.data) as Map;
+      return data is Map ? data : json.decode(response.data);
     } catch (e) {
       _logger.warning('An error was encountered while decoding JSON data', e);
       throw JsonDecodeException();

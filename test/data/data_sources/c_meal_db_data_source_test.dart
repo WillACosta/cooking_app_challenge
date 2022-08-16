@@ -266,7 +266,7 @@ void main() {
         },
       );
 
-      test('should returns correct list of meal categories', () {
+      test('should returns correct Meal instance', () {
         httpStubs.setupHttpClientResponse(
           endpoint,
           fixture(MockMeal.mockMealJSONKey),

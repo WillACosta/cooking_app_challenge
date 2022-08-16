@@ -104,21 +104,21 @@ void main() {
         },
       );
 
-      test(
-        'should makes correct request and return a Meal',
-        () async {
-          when(
-            () => dataSource.getMealByID(fakeMealID),
-          ).thenAnswer(
-            (_) async => MockMeal.meal,
-          );
+      //   test(
+      //     'should makes correct request and return a Meal',
+      //     () async {
+      //       when(
+      //         () => dataSource.getMealByID(fakeMealID),
+      //       ).thenAnswer(
+      //         (_) async => MockMeal.meal,
+      //       );
 
-          final result = await repository.getMealByID(fakeMealID);
+      //       final result = await repository.getMealByID(fakeMealID);
 
-          expect(result, equals(MockMeal.meal));
-          verify(() => dataSource.getMealByID(fakeMealID));
-        },
-      );
+      //       expect(result, equals(MockMeal.meal));
+      //       verify(() => dataSource.getMealByID(fakeMealID));
+      //     },
+      //   );
     });
   });
 }

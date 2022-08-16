@@ -14,7 +14,7 @@ void main() {
 
     test('should parse JSON response to a Meal', () {
       final stringSource = fixture(MockMeal.mockMealJSONKey);
-      final responseMap = json.decode(stringSource) as Map;
+      final responseMap = json.decode(stringSource) as Map<String, dynamic>;
 
       final expectedResult = MealModel.fromMap(responseMap['meals'][0]);
 
