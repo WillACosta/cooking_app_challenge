@@ -33,6 +33,22 @@ mixin _$MealCategoryItemStore on _MealCategoryItemStoreBase, Store {
     });
   }
 
+  late final _$currentCategoryNameAtom = Atom(
+      name: '_MealCategoryItemStoreBase.currentCategoryName', context: context);
+
+  @override
+  String get currentCategoryName {
+    _$currentCategoryNameAtom.reportRead();
+    return super.currentCategoryName;
+  }
+
+  @override
+  set currentCategoryName(String value) {
+    _$currentCategoryNameAtom.reportWrite(value, super.currentCategoryName, () {
+      super.currentCategoryName = value;
+    });
+  }
+
   late final _$_MealCategoryItemStoreBaseActionController =
       ActionController(name: '_MealCategoryItemStoreBase', context: context);
 
@@ -48,8 +64,20 @@ mixin _$MealCategoryItemStore on _MealCategoryItemStoreBase, Store {
   }
 
   @override
+  void setCurrentCategoryName(String name) {
+    final _$actionInfo = _$_MealCategoryItemStoreBaseActionController
+        .startAction(name: '_MealCategoryItemStoreBase.setCurrentCategoryName');
+    try {
+      return super.setCurrentCategoryName(name);
+    } finally {
+      _$_MealCategoryItemStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+currentCategoryName: ${currentCategoryName},
 state: ${state}
     ''';
   }

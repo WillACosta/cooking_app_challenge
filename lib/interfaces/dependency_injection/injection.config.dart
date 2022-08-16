@@ -13,11 +13,12 @@ import '../../data/data_sources/meal_db_data_source.dart' as _i5;
 import '../../domain/repositories/c_meal_db_repository.dart' as _i8;
 import '../../domain/repositories/meal_db_repository.dart' as _i7;
 import '../../modules/meal/store/meal_category/meal_category_store.dart'
-    as _i12;
+    as _i13;
 import '../../modules/meal/store/meal_category_item/meal_category_item_store.dart'
-    as _i11;
-import '../../modules/meal/store/meal_detail/meal_detail_store.dart' as _i10;
-import '../../modules/welcome/store/welcome_store.dart' as _i9;
+    as _i12;
+import '../../modules/meal/store/meal_detail/meal_detail_store.dart' as _i11;
+import '../../modules/welcome/store/form/name_form_store.dart' as _i9;
+import '../../modules/welcome/store/welcome_store.dart' as _i10;
 import '../http/c_http_client_app.dart' as _i4;
 import '../http/http_client_app.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
@@ -32,12 +33,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i6.CMealDBDataSource(get<_i3.HttpClientApp>()));
   gh.factory<_i7.MealDBRepository>(
       () => _i8.CMealDBRepository(get<_i5.MealDBDataSource>()));
-  gh.factory<_i9.WelcomeStore>(() => _i9.WelcomeStore());
-  gh.factory<_i10.MeaDetailStore>(
-      () => _i10.MeaDetailStore(get<_i7.MealDBRepository>()));
-  gh.singleton<_i11.MealCategoryItemStore>(
-      _i11.MealCategoryItemStore(get<_i7.MealDBRepository>()));
-  gh.factory<_i12.MealCategoryStore>(
-      () => _i12.MealCategoryStore(get<_i7.MealDBRepository>()));
+  gh.factory<_i9.NameFormStore>(() => _i9.NameFormStore());
+  gh.factory<_i10.WelcomeStore>(() => _i10.WelcomeStore());
+  gh.factory<_i11.MeaDetailStore>(
+      () => _i11.MeaDetailStore(get<_i7.MealDBRepository>()));
+  gh.singleton<_i12.MealCategoryItemStore>(
+      _i12.MealCategoryItemStore(get<_i7.MealDBRepository>()));
+  gh.factory<_i13.MealCategoryStore>(
+      () => _i13.MealCategoryStore(get<_i7.MealDBRepository>()));
   return get;
 }

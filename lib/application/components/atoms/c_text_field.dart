@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CTextField extends StatefulWidget {
+class CTextField extends StatelessWidget {
   final bool autoFocus;
   final bool autocorrect;
 
@@ -13,6 +13,9 @@ class CTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final TextEditingController? controller;
+  final int? maxLength;
+  final bool? hasError;
+  final String? initialValue;
 
   const CTextField({
     Key? key,
@@ -27,27 +30,28 @@ class CTextField extends StatefulWidget {
     this.onChanged,
     this.onEditingComplete,
     this.controller,
+    this.maxLength,
+    this.hasError,
+    this.initialValue,
   }) : super(key: key);
 
   @override
-  State<CTextField> createState() => _CTextFieldState();
-}
-
-class _CTextFieldState extends State<CTextField> {
-  @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: widget.controller,
+      controller: controller,
       decoration: InputDecoration(
-        label: Center(child: Text(widget.label)),
+        label: Center(child: Text(label)),
+        counterText: '',
+        errorText: errorText,
       ),
-      keyboardType: widget.keyboardType,
-      textInputAction: widget.textInputAction,
-      enabled: widget.enabled,
-      onChanged: widget.onChanged,
-      onEditingComplete: widget.onEditingComplete,
-      autofocus: widget.autocorrect,
-      autocorrect: widget.autocorrect,
+      maxLength: maxLength,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      enabled: enabled,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      autofocus: autocorrect,
+      autocorrect: autocorrect,
     );
   }
 }

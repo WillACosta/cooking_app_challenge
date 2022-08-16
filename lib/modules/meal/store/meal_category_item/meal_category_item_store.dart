@@ -33,11 +33,12 @@ abstract class _MealCategoryItemStoreBase with Store {
   void _setState(MealCategoryItemUiState newState) => _state = newState;
 
   @action
+  void setCurrentCategoryName(String name) => currentCategoryName = name;
+
   Future<void> getAllMealsByCategoryName(String categoryName) async {
     try {
+      setCurrentCategoryName(categoryName);
       _setState(const MealCategoryItemUiState(status: UiStatus.loading));
-
-      currentCategoryName = categoryName;
 
       final responseList = await _repository.filterMealsByCategory(
         categoryName,
@@ -47,7 +48,7 @@ abstract class _MealCategoryItemStoreBase with Store {
         status: UiStatus.success,
         meals: responseList,
       ));
-    } catch (e) {
+    } catch (_) {
       _setState(const MealCategoryItemUiState(
         status: UiStatus.failure,
       ));

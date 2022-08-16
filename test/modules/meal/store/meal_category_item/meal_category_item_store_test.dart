@@ -89,7 +89,7 @@ void main() {
     );
 
     test(
-      'should set store state in order if dataSource returns unsuccessfully',
+      'should set store state in order if repository returns unsuccessfully',
       () async {
         setUpRepositoryFailure();
 
@@ -118,5 +118,12 @@ void main() {
         ]);
       },
     );
+
+    test('should set currentCategoryName', () async {
+      setUpRepositorySuccess();
+      await store.getAllMealsByCategoryName(MockMeal.categoryTerm);
+
+      expect(store.currentCategoryName, equals(MockMeal.categoryTerm));
+    });
   });
 }
