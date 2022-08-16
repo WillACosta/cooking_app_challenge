@@ -23,15 +23,21 @@ abstract class _MealCategoryItemStoreBase with Store {
     status: UiStatus.initial,
   );
 
+  @observable
+  String currentCategoryName = '';
+
   @computed
   MealCategoryItemUiState get state => _state;
 
   @action
   void _setState(MealCategoryItemUiState newState) => _state = newState;
 
+  @action
   Future<void> getAllMealsByCategoryName(String categoryName) async {
     try {
       _setState(const MealCategoryItemUiState(status: UiStatus.loading));
+
+      currentCategoryName = categoryName;
 
       final responseList = await _repository.filterMealsByCategory(
         categoryName,

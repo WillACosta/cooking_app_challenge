@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../application/aplication.dart';
 import '../../../../application/shared/shared.dart';
 
 import '../../../../domain/entities/entities.dart';
@@ -49,6 +50,10 @@ class _CategoriesViewState extends State<CategoriesView> {
 
       if (state.status == UiStatus.initial) {
         return Container();
+      }
+
+      if (state.status == UiStatus.failure) {
+        ReloadCategories(onPressed: _store.getAllCategories);
       }
 
       if (state.status == UiStatus.success) {

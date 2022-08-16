@@ -57,6 +57,14 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 return MealsGridBody(meals: state.meals);
               }
 
+              if (state.status == UiStatus.failure) {
+                return ErrorStateView(
+                  onPressed: () => _store.getAllMealsByCategoryName(
+                    _store.currentCategoryName,
+                  ),
+                );
+              }
+
               return const SizedBox.shrink();
             },
           ),
