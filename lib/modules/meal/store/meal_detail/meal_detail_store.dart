@@ -26,6 +26,8 @@ abstract class _MeaDetailStoreBase with Store {
   @computed
   MealDetailUiState get state => _state;
 
+  final ingredientBaseURL = 'https://www.themealdb.com/images/ingredients';
+
   Future<void> getMealByID(String id) async {
     try {
       _setState(const MealDetailUiState(status: UiStatus.loading));

@@ -12,6 +12,7 @@ class CText extends StatelessWidget {
   final TextAlign textAlign;
   final double? lineHeight;
   final TextDecoration? textDecoration;
+  final TextOverflow overflow;
 
   const CText.xxxs(
     this.text, {
@@ -21,6 +22,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 12,
         super(key: key);
 
@@ -32,6 +34,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 14,
         super(key: key);
 
@@ -43,6 +46,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 16,
         super(key: key);
 
@@ -54,6 +58,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 20,
         super(key: key);
 
@@ -65,6 +70,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 22,
         super(key: key);
 
@@ -76,6 +82,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 30,
         super(key: key);
 
@@ -87,6 +94,7 @@ class CText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.lineHeight,
     this.textDecoration,
+    this.overflow = TextOverflow.ellipsis,
   })  : fontSize = 40,
         super(key: key);
 
@@ -95,7 +103,7 @@ class CText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      overflow: TextOverflow.ellipsis,
+      overflow: overflow,
       style: GoogleFonts.poppins(
         color: color,
         fontSize: fontSize,

@@ -16,6 +16,7 @@ class WelcomeView extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              const VerticalWhiteSpace(30),
               const CText.lg(
                 'Faça você \nsuas receitas de \nforma fácil',
                 textAlign: TextAlign.center,

@@ -30,21 +30,20 @@ void main() {
       );
     });
 
-    test('should get hasValidUserName', () async {
-      await store.setUserName(fakeUserName);
-
+    test('should get hasValidUserName', () {
+      store.setUserName(fakeUserName);
       expect(store.hasValidUserName, isTrue);
     });
 
     test(
       'should set store state in order if dataSource returns successfully',
-      () async {
+      () {
         setUpMobxStoreReaction(
           () => store.state,
           (value) => statusChanged(value),
         );
 
-        await store.setUserName(fakeUserName);
+        store.setUserName(fakeUserName);
 
         verifyInOrder([
           () => statusChanged(

@@ -1,29 +1,17 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../application/shared/shared.dart';
 import '../../../../domain/entities/entities.dart';
 
-abstract class MealCategoryItemUiState extends Equatable {}
-
-class MealCategoryItemInitialState extends MealCategoryItemUiState {
-  @override
-  List<Object?> get props => [];
-}
-
-class MealCategoryItemLoadingState extends MealCategoryItemUiState {
-  @override
-  List<Object?> get props => [];
-}
-
-class MealCategoryItemErrorState extends MealCategoryItemUiState {
-  @override
-  List<Object?> get props => [];
-}
-
-class MealCategoryItemSuccessState extends MealCategoryItemUiState {
+class MealCategoryItemUiState extends Equatable {
+  final UiStatus status;
   final List<MealCategoryItem> meals;
 
-  MealCategoryItemSuccessState(this.meals);
+  const MealCategoryItemUiState({
+    required this.status,
+    this.meals = const [],
+  });
 
   @override
-  List<Object?> get props => [meals];
+  List<Object?> get props => [status, meals];
 }

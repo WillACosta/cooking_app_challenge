@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../domain/entities/meal_category.dart';
+import '../../../../application/shared/shared.dart';
+
+import '../../../../domain/entities/entities.dart';
 import '../../../../interfaces/interfaces.dart';
 import '../../store/meal_category_item/meal_category_item.dart';
 import '../../store/store.dart';
@@ -45,11 +47,11 @@ class _CategoriesViewState extends State<CategoriesView> {
     return Observer(builder: (_) {
       final state = _store.state;
 
-      if (state is MealCategoryErrorState) {
+      if (state.status == UiStatus.initial) {
         return Container();
       }
 
-      if (state is MealCategorySuccessState) {
+      if (state.status == UiStatus.success) {
         return ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: state.categories.length,

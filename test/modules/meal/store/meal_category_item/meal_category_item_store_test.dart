@@ -3,6 +3,7 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:cooking_home/modules/meal/store/meal_category_item/meal_category_item.dart';
 import 'package:cooking_home/domain/repositories/meal_db_repository.dart';
+import 'package:cooking_home/application/shared/shared.dart';
 
 import '../../../../fixtures/fixtures.dart';
 import '../../../../fixtures/mock/mock.dart';
@@ -34,7 +35,14 @@ void main() {
     }
 
     test('should get initial state', () {
-      expect(store.state, isA<MealCategoryItemInitialState>());
+      expect(
+        store.state,
+        isA<MealCategoryItemUiState>().having(
+          (state) => state.status,
+          'status',
+          UiStatus.initial,
+        ),
+      );
     });
 
     test('should call getAllMealsByCategoryName method', () async {
@@ -56,8 +64,26 @@ void main() {
         await store.getAllMealsByCategoryName(MockMeal.categoryTerm);
 
         verifyInOrder([
-          () => statusChanged(isA<MealCategoryItemLoadingState>()),
-          () => statusChanged(isA<MealCategoryItemSuccessState>()),
+          () => statusChanged(
+                isA<MealCategoryItemUiState>().having(
+                  (state) => state.status,
+                  'status',
+                  UiStatus.loading,
+                ),
+              ),
+          () => statusChanged(
+                isA<MealCategoryItemUiState>()
+                    .having(
+                      (state) => state.status,
+                      'status',
+                      UiStatus.success,
+                    )
+                    .having(
+                      (state) => state.meals,
+                      'categories',
+                      MockMeal.mealCategoriesItem,
+                    ),
+              ),
         ]);
       },
     );
@@ -75,8 +101,20 @@ void main() {
         await store.getAllMealsByCategoryName(MockMeal.categoryTerm);
 
         verifyInOrder([
-          () => statusChanged(isA<MealCategoryItemLoadingState>()),
-          () => statusChanged(isA<MealCategoryItemErrorState>()),
+          () => statusChanged(
+                isA<MealCategoryItemUiState>().having(
+                  (state) => state.status,
+                  'status',
+                  UiStatus.loading,
+                ),
+              ),
+          () => statusChanged(
+                isA<MealCategoryItemUiState>().having(
+                  (state) => state.status,
+                  'status',
+                  UiStatus.failure,
+                ),
+              ),
         ]);
       },
     );

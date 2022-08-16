@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:cooking_home/domain/repositories/meal_db_repository.dart';
+import 'package:cooking_home/application/shared/enums/ui_status.dart';
 import 'package:cooking_home/modules/meal/store/store.dart';
 
 import '../../../../fixtures/fixtures.dart';
@@ -17,8 +18,8 @@ void main() {
 
     setUp(() {
       repository = MockMealDBRepository();
-      statusChanged = MockCallable();
       store = MealCategoryStore(repository);
+      statusChanged = MockCallable();
     });
 
     void setUpRepositorySuccess() {
@@ -34,7 +35,14 @@ void main() {
     }
 
     test('should get initial state', () {
-      expect(store.state, isA<MealCategoryInitialState>());
+      expect(
+        store.state,
+        isA<MealCategoryUiState>().having(
+          (state) => state.status,
+          'status',
+          UiStatus.initial,
+        ),
+      );
     });
 
     test('should call getAllCategories method', () {
@@ -44,7 +52,7 @@ void main() {
     });
 
     test(
-      'should set store state in order if dataSource returns successfully',
+      'should set store state in order if repository returns successfully',
       () async {
         setUpRepositorySuccess();
 
@@ -56,8 +64,26 @@ void main() {
         await store.getAllCategories();
 
         verifyInOrder([
-          () => statusChanged(isA<MealCategoryLoadingState>()),
-          () => statusChanged(isA<MealCategorySuccessState>()),
+          () => statusChanged(
+                isA<MealCategoryUiState>().having(
+                  (state) => state.status,
+                  'status',
+                  UiStatus.loading,
+                ),
+              ),
+          () => statusChanged(
+                isA<MealCategoryUiState>()
+                    .having(
+                      (state) => state.status,
+                      'status',
+                      UiStatus.success,
+                    )
+                    .having(
+                      (state) => state.categories,
+                      'categories',
+                      MockMeal.categories,
+                    ),
+              ),
         ]);
       },
     );
@@ -75,8 +101,20 @@ void main() {
         await store.getAllCategories();
 
         verifyInOrder([
-          () => statusChanged(isA<MealCategoryLoadingState>()),
-          () => statusChanged(isA<MealCategoryErrorState>()),
+          () => statusChanged(
+                isA<MealCategoryUiState>().having(
+                  (state) => state.status,
+                  'status',
+                  UiStatus.loading,
+                ),
+              ),
+          () => statusChanged(
+                isA<MealCategoryUiState>().having(
+                  (state) => state.status,
+                  'status',
+                  UiStatus.failure,
+                ),
+              ),
         ]);
       },
     );

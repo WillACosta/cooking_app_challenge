@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../domain/repositories/meal_db_repository.dart';
+import '../../../../application/shared/shared.dart';
 import 'meal_category_item.dart';
 
 part 'meal_category_item_store.g.dart';
@@ -18,7 +19,9 @@ abstract class _MealCategoryItemStoreBase with Store {
   _MealCategoryItemStoreBase(this._repository);
 
   @observable
-  MealCategoryItemUiState _state = MealCategoryItemInitialState();
+  MealCategoryItemUiState _state = const MealCategoryItemUiState(
+    status: UiStatus.initial,
+  );
 
   @computed
   MealCategoryItemUiState get state => _state;
@@ -28,15 +31,20 @@ abstract class _MealCategoryItemStoreBase with Store {
 
   Future<void> getAllMealsByCategoryName(String categoryName) async {
     try {
-      _setState(MealCategoryItemLoadingState());
+      _setState(const MealCategoryItemUiState(status: UiStatus.loading));
 
       final responseList = await _repository.filterMealsByCategory(
         categoryName,
       );
 
-      _setState(MealCategoryItemSuccessState(responseList));
+      _setState(MealCategoryItemUiState(
+        status: UiStatus.success,
+        meals: responseList,
+      ));
     } catch (e) {
-      _setState(MealCategoryItemErrorState());
+      _setState(const MealCategoryItemUiState(
+        status: UiStatus.failure,
+      ));
     }
   }
 }

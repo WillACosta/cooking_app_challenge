@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../../application/shared/shared.dart';
 import '../../../../../interfaces/dependency_injection/injection.dart';
 import '../../../../../application/components/components.dart';
 import '../../../store/meal_category_item/meal_category_item.dart';
@@ -48,11 +49,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             builder: (_) {
               final state = _store.state;
 
-              if (state is MealCategoryItemLoadingState) {
+              if (state.status == UiStatus.loading) {
                 return const ShimmerGridItems();
               }
 
-              if (state is MealCategoryItemSuccessState) {
+              if (state.status == UiStatus.success) {
                 return MealsGridBody(meals: state.meals);
               }
 

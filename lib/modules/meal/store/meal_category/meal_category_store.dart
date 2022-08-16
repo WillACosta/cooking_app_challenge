@@ -3,6 +3,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../application/shared/shared.dart';
 import '../../../../domain/repositories/meal_db_repository.dart';
 import 'meal_category_ui_state.dart';
 
@@ -17,7 +18,9 @@ abstract class _MealCategoryStoreBase with Store {
   _MealCategoryStoreBase(this._repository);
 
   @observable
-  MealCategoryUiState _state = MealCategoryInitialState();
+  MealCategoryUiState _state = const MealCategoryUiState(
+    status: UiStatus.initial,
+  );
 
   @computed
   MealCategoryUiState get state => _state;
@@ -27,11 +30,22 @@ abstract class _MealCategoryStoreBase with Store {
 
   Future<void> getAllCategories() async {
     try {
-      _setState(MealCategoryLoadingState());
+      _setState(
+        const MealCategoryUiState(status: UiStatus.loading),
+      );
+
       final responseList = await _repository.listAllMealCategories();
-      _setState(MealCategorySuccessState(responseList));
+
+      _setState(
+        MealCategoryUiState(
+          status: UiStatus.success,
+          categories: responseList,
+        ),
+      );
     } catch (e) {
-      _setState(MealCategoryErrorState());
+      _setState(
+        const MealCategoryUiState(status: UiStatus.failure),
+      );
     }
   }
 }

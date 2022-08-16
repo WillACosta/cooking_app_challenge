@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
-import '../../../../application/components/components.dart';
-import '../../../../application/shared/shared.dart';
+import '../../../../application/aplication.dart';
 import '../../../../domain/entities/entities.dart';
 import '../../../../interfaces/interfaces.dart';
 import '../../store/meal_detail/meal_detail_store.dart';
@@ -22,9 +20,15 @@ class MealDetailView extends StatefulWidget {
 }
 
 class _MealDetailViewState extends State<MealDetailView> {
-  static const ingredientBaseURL =
-      'https://www.themealdb.com/images/ingredients';
   final _store = serviceLocator<MeaDetailStore>();
+
+  bool _showInstructions = false;
+
+  void _setShowInstructions(bool value) {
+    setState(() {
+      _showInstructions = value;
+    });
+  }
 
   @override
   void initState() {
@@ -46,38 +50,23 @@ class _MealDetailViewState extends State<MealDetailView> {
               child: GridItem(meal: widget.meal, isDetail: true),
             ),
             const VerticalWhiteSpace(45),
-            Expanded(
-              child: Observer(
-                builder: (_) {
-                  final state = _store.state;
-
-                  if (state.status == UiStatus.loading) {
-                    return const ShimmerIngredientsList();
-                  }
-
-                  if (state.status == UiStatus.success) {
-                    final ingredients = state.meal!.ingredients;
-                    final measures = state.meal!.measures;
-
-                    return ListView.builder(
-                      itemCount: ingredients.length,
-                      itemBuilder: ((context, index) {
-                        final currentIngredient = ingredients[index];
-                        final currentMeasure = measures[index];
-
-                        return IngredientTile(
-                          thumbUrl: '$ingredientBaseURL/$currentIngredient.png',
-                          title: currentIngredient,
-                          measure: currentMeasure,
-                        );
-                      }),
-                    );
-                  }
-
-                  return const SizedBox.shrink();
-                },
-              ),
+            // const MealSwitch(),
+            Switch(
+              value: _showInstructions,
+              onChanged: _setShowInstructions,
             ),
+            const VerticalWhiteSpace(30),
+            if (_showInstructions && _store.state.status == UiStatus.success)
+              Expanded(
+                child: SingleChildScrollView(
+                  child: CText.xxs(
+                    _store.state.meal!.strInstructions,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+              )
+            else
+              IngredientsList(store: _store),
           ],
         ),
       ),
