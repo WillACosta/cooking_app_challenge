@@ -18,15 +18,19 @@ class IngredientsList extends StatelessWidget {
       child: ListView.builder(
         itemCount: meal.ingredients.length,
         itemBuilder: ((context, index) {
-          final currentIngredient = meal.ingredients[index];
-          final currentMeasure = meal.measures[index];
-          final thumbUrl = '$ingredientImageBaseURL/$currentIngredient.png';
+          try {
+            final currentIngredient = meal.ingredients[index];
+            final currentMeasure = meal.measures[index];
+            final thumbUrl = '$ingredientImageBaseURL/$currentIngredient.png';
 
-          return IngredientTile(
-            thumbUrl: thumbUrl,
-            title: currentIngredient,
-            measure: currentMeasure,
-          );
+            return IngredientTile(
+              thumbUrl: thumbUrl,
+              title: currentIngredient,
+              measure: currentMeasure,
+            );
+          } catch (_) {
+            return const SizedBox.shrink();
+          }
         }),
       ),
     );
