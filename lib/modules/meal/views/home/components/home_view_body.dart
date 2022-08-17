@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../../application/components/components.dart';
 import '../../../../../application/shared/shared.dart';
 import '../../../../../interfaces/dependency_injection/injection.dart';
-import '../../../../../application/components/components.dart';
 import '../../../store/meal_category_item/meal_category_item.dart';
 import '../../categories_list/categories_list.dart';
 import '../../meals_list/components/components.dart';
@@ -11,11 +11,8 @@ import '../../meals_list/meals_list.dart';
 import 'components.dart';
 
 class HomeViewBody extends StatefulWidget {
-  final String userName;
-
   const HomeViewBody({
     Key? key,
-    required this.userName,
   }) : super(key: key);
 
   @override
@@ -24,20 +21,22 @@ class HomeViewBody extends StatefulWidget {
 
 class _HomeViewBodyState extends State<HomeViewBody> {
   final _store = serviceLocator<MealCategoryItemStore>();
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
+  final _userStore = serviceLocator<UserStore>();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Greeting(userName: widget.userName),
+        Observer(builder: (_) {
+          final userName = _userStore.userData.name;
+          return Greeting(userName: userName);
+        }),
         const VerticalWhiteSpace(32),
-        const CategorySelectText(),
+        const SectionHeader(
+          title: 'O que vamos fazer hoje?',
+          subtitle: 'Você pode escolher uma das categorias abaixo.',
+        ),
         const VerticalWhiteSpace(25),
         const SizedBox(
           height: 50,

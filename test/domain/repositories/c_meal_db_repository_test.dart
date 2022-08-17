@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:cooking_home/core/errors/domain_failures.dart';
-import 'package:cooking_home/data/data_sources/meal_db_data_source.dart';
-import 'package:cooking_home/domain/repositories/c_meal_db_repository.dart';
+import 'package:cooking_home/domain/repositories/repositories.dart';
+import 'package:cooking_home/data/data_sources/data_sources.dart';
 
 import '../../fixtures/mock/mock.dart';
 

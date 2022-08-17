@@ -9,6 +9,7 @@ abstract class AppColors {
   static const Color secondaryText = Color(0xFFB2AAAA);
 
   static const Color surface = Color(0xFFEDEDED);
+  static const Color surfaceDark = Color(0xFF2C2C2C);
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF111111);
@@ -16,4 +17,7 @@ abstract class AppColors {
 
   static const Color gradientStart = Color(0xFFFAF5F5);
   static const Color gradientEnd = Color(0xFFF0F0F0);
+
+  static const Color success = Color(0xFF89EA6B);
+  static const Color neutral = Color(0xFFD6D6D6);
 }

@@ -1,5 +1,6 @@
-import 'package:cooking_home/core/errors/errors.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:cooking_home/core/errors/errors.dart';
 
 void main() {
   group('MealRepositoryFailure', () {

@@ -5,7 +5,10 @@ flutter test --coverage
 # Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:
 genhtml coverage/lcov.info -o coverage/html
 
-remove_from_coverage -f coverage/lcov.info -r '.g.dart$'
+lcov --remove coverage/lcov.info
+'lib/*/*.freezed.dart' 'lib/*/*.g.dart'
+'lib/*/*.part.dart' 'lib/generated/*.dart'
+'lib/generated/*.dart/*.dart' 'lib/modules/*/views/*' -o coverage/lcov.info
 
 # Open the report
 open coverage/html/index.html

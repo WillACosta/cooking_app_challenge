@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import 'package:cooking_home/domain/repositories/contracts/meal_db_repository.dart';
 import 'package:cooking_home/modules/meal/store/meal_category_item/meal_category_item.dart';
-import 'package:cooking_home/domain/repositories/meal_db_repository.dart';
 import 'package:cooking_home/application/shared/shared.dart';
 
 import '../../../../fixtures/fixtures.dart';

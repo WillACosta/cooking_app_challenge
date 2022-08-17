@@ -1,23 +1,20 @@
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../utils/utils.dart';
-
 class CText extends StatelessWidget {
   final double fontSize;
-
   final String text;
   final FontWeight fontWeight;
-  final Color color;
   final TextAlign textAlign;
+  final TextOverflow overflow;
+  final Color? color;
   final double? lineHeight;
   final TextDecoration? textDecoration;
-  final TextOverflow overflow;
 
   const CText.xxxs(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
@@ -29,7 +26,7 @@ class CText extends StatelessWidget {
   const CText.xxs(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
@@ -41,7 +38,7 @@ class CText extends StatelessWidget {
   const CText.xs(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
@@ -53,7 +50,7 @@ class CText extends StatelessWidget {
   const CText.sm(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
@@ -65,7 +62,7 @@ class CText extends StatelessWidget {
   const CText.md(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
@@ -77,7 +74,7 @@ class CText extends StatelessWidget {
   const CText.lg(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,
@@ -89,7 +86,7 @@ class CText extends StatelessWidget {
   const CText.xl(
     this.text, {
     Key? key,
-    this.color = AppColors.text,
+    this.color,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.lineHeight,

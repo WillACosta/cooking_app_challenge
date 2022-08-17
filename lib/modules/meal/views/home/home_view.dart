@@ -4,18 +4,15 @@ import '../../../../application/components/components.dart';
 import 'components/components.dart';
 
 class HomeView extends StatelessWidget {
-  final String userName;
-
   const HomeView({
     Key? key,
-    required this.userName,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: BaseViewPadding(
-        child: HomeViewBody(userName: userName),
+        child: HomeViewBody(),
       ),
     );
   }

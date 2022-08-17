@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../application/shared/shared.dart';
-import '../../../../domain/repositories/meal_db_repository.dart';
+import '../../../../domain/repositories/contracts/meal_db_repository.dart';
 import 'meal_detail_ui_state.dart';
 
 part 'meal_detail_store.g.dart';
@@ -34,7 +34,7 @@ abstract class _MeaDetailStoreBase with Store {
 
       _setState(MealDetailUiState(status: UiStatus.success, meal: meal));
     } catch (e) {
-      _setState(const MealDetailUiState(status: UiStatus.loading));
+      _setState(const MealDetailUiState(status: UiStatus.failure));
     }
   }
 }

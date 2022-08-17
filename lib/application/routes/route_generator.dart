@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/entities.dart';
+import '../../modules/container/container.dart';
 import '../../modules/meal/views/views.dart';
 import '../../modules/welcome/views/views.dart';
-
-import 'app_routes.dart';
+import '../aplication.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -27,12 +27,9 @@ class RouteGenerator {
         );
 
       case AppRoutes.home:
-        if (args is String) {
-          return MaterialPageRoute(
-            builder: (_) => HomeView(userName: args),
-          );
-        }
-        return _errorRoute();
+        return MaterialPageRoute(
+          builder: (_) => const ContainerView(),
+        );
 
       case AppRoutes.mealDetail:
         if (args is MealCategoryItem) {
@@ -48,6 +45,12 @@ class RouteGenerator {
   }
 
   static Route<dynamic> _errorRoute() {
-    return MaterialPageRoute(builder: (_) => Container());
+    return MaterialPageRoute(
+      builder: (_) => const Scaffold(
+        body: Center(
+          child: CText.xxs('Rota não encontrada. :('),
+        ),
+      ),
+    );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:cooking_home/domain/repositories/meal_db_repository.dart';
+import 'package:cooking_home/domain/repositories/repositories.dart';
 import 'package:cooking_home/application/shared/enums/ui_status.dart';
 import 'package:cooking_home/modules/meal/store/store.dart';
 

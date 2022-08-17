@@ -49,11 +49,15 @@ class _MealToggleTabState extends State<MealToggleTab> {
         fontSize: 14,
         fontWeight: FontWeight.normal,
       ),
-      unSelectedTextStyle: const TextStyle(
-        color: AppColors.text,
+      unSelectedTextStyle: TextStyle(
+        color: Theme.of(context).highlightColor,
         fontSize: 14,
         fontWeight: FontWeight.normal,
       ),
+      unSelectedBackgroundColors: [
+        Theme.of(context).disabledColor,
+        Theme.of(context).disabledColor,
+      ],
       labels: const ['Ingredients', 'Instructions'],
       selectedIndex: _activeTabIndex,
       selectedLabelIndex: _handleSelected,
