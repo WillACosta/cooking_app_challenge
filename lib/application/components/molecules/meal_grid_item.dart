@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../application/components/components.dart';
-import '../../../../../domain/entities/entities.dart';
 
 class MealGridItem extends StatelessWidget {
-  final MealCategoryItem meal;
+  final String imageUrl;
+  final String description;
   final bool isDetail;
 
   const MealGridItem({
     Key? key,
-    required this.meal,
     this.isDetail = false,
+    required this.imageUrl,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -20,17 +21,17 @@ class MealGridItem extends StatelessWidget {
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.network(meal.strMealThumb),
+            child: Image.network(imageUrl),
           ),
         ),
         Container(
           padding: const EdgeInsets.only(top: 15),
           child: isDetail
               ? CText.xs(
-                  meal.strMeal,
+                  description,
                   fontWeight: FontWeight.bold,
                 )
-              : CText.xxxs(meal.strMeal),
+              : CText.xxxs(description),
         ),
       ],
     );

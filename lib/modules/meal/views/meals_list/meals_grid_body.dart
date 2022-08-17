@@ -17,14 +17,17 @@ class MealsGridBody extends StatelessWidget {
       gridDelegate: silverGridDelegate,
       itemCount: meals.length,
       itemBuilder: (_, index) {
+        final meal = meals[index];
+
         return InkWell(
           onTap: () => navigateTo(
             _,
             routeName: AppRoutes.mealDetail,
-            args: meals[index],
+            args: meal,
           ),
           child: MealGridItem(
-            meal: meals[index],
+            description: meal.strMeal,
+            imageUrl: meal.strMealThumb,
           ),
         );
       },

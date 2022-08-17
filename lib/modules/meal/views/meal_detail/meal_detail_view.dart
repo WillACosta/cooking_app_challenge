@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../application/aplication.dart';
 import '../../../../domain/entities/entities.dart';
 import '../../../../interfaces/interfaces.dart';
 import '../../store/meal_detail/meal_detail_store.dart';
 import 'components/components.dart';
+import 'meal_detail_body.dart';
 
 class MealDetailView extends StatefulWidget {
   final MealCategoryItem meal;
@@ -19,20 +21,15 @@ class MealDetailView extends StatefulWidget {
 }
 
 class _MealDetailViewState extends State<MealDetailView> {
-  final _store = serviceLocator<MeaDetailStore>();
-  late int _activeTabIndex;
-
-  void _handleSelected(int value) {
-    setState(() {
-      _activeTabIndex = value;
-    });
-  }
+  static final _store = serviceLocator<MeaDetailStore>();
 
   @override
   void initState() {
     super.initState();
+    _getMealByID();
+  }
 
-    _activeTabIndex = 0;
+  _getMealByID() {
     _store.getMealByID(widget.meal.idMeal);
   }
 
@@ -40,30 +37,23 @@ class _MealDetailViewState extends State<MealDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BaseViewPadding(
-        child: Column(
-          children: [
-            const HeaderActions(),
-            const VerticalWhiteSpace(30),
-            SizedBox.square(
-              dimension: 200,
-              child: MealGridItem(meal: widget.meal, isDetail: true),
-            ),
-            const VerticalWhiteSpace(45),
-            MealToggleTab(onChanged: _handleSelected),
-            const VerticalWhiteSpace(30),
-            if (_activeTabIndex == 1 && _store.state.status == UiStatus.success)
-              Expanded(
-                child: SingleChildScrollView(
-                  child: CText.xxs(
-                    _store.state.meal!.strInstructions,
-                    overflow: TextOverflow.visible,
-                  ),
-                ),
-              )
-            else
-              IngredientsList(store: _store),
-          ],
-        ),
+        child: Observer(builder: (_) {
+          final state = _store.state;
+
+          if (state.status == UiStatus.loading) {
+            return const ShimmerMealDetailLayout();
+          }
+
+          if (state.status == UiStatus.success) {
+            return MealDetailBody(meal: state.meal!);
+          }
+
+          if (state.status == UiStatus.failure) {
+            return ErrorStateView(onPressed: _getMealByID);
+          }
+
+          return const SizedBox.shrink();
+        }),
       ),
     );
   }
