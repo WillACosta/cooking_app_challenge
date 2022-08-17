@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/entities.dart';
-import '../../interfaces/http/http_client_app.dart';
-import '../../core/errors/errors.dart';
-import '../models/models.dart';
+import '../../../core/errors/errors.dart';
+import '../../../domain/entities/entities.dart';
+import '../../../interfaces/http/http_client_app.dart';
+import '../../models/models.dart';
+import '../endpoints/meal_resource_endpoints.dart';
 import './meal_db_data_source.dart';
-import './meal_resource_endpoints.dart';
 
 @Injectable(as: MealDBDataSource)
 class CMealDBDataSource implements MealDBDataSource {

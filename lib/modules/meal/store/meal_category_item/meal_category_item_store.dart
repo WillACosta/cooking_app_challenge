@@ -3,8 +3,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../domain/repositories/meal_db_repository.dart';
 import '../../../../application/shared/shared.dart';
+import '../../../../domain/repositories/contracts/meal_db_repository.dart';
 import 'meal_category_item.dart';
 
 part 'meal_category_item_store.g.dart';

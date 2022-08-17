@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../../application/routes/routes.dart';
-import '../../../../../application/utils/utils.dart';
+import '../../../../../application/aplication.dart';
+import '../../../../../interfaces/interfaces.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({Key? key}) : super(key: key);
@@ -12,10 +12,16 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
+  final _userStore = serviceLocator<UserStore>();
+
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
-      navigateTo(context, routeName: AppRoutes.welcome);
+      if (_userStore.hasUserName) {
+        navigateTo(context, routeName: AppRoutes.home);
+      } else {
+        navigateTo(context, routeName: AppRoutes.welcome);
+      }
     });
 
     super.initState();

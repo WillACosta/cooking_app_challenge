@@ -17,11 +17,11 @@ class ShimmerGridItems extends StatelessWidget {
               width: 120,
               height: 120,
             ),
-            const VerticalWhiteSpace(5),
+            const VerticalWhiteSpace(15),
             ShimmerTile.radiusSquare(
               width: 100,
               height: 10,
-              radius: 4,
+              radius: 2,
             ),
           ],
         );

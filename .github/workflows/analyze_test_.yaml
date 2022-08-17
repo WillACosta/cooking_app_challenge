@@ -36,21 +36,5 @@ jobs:
         run: flutter format --dry-run --set-exit-if-changed lib/
       - run: flutter format --dry-run --set-exit-if-changed test/
 
-      - name: Run Flutter Test Coverage
-        run: flutter test --coverage
-      - run: flutter test --machine > test-results.json
-
-      - name: Generate test report
-        uses: dorny/test-reporter@v1.4.2
-        with:
-          name: test-results
-          path: test-results.json
-          reporter: flutter-json
-
-      - name: Define min coverage percentage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
-        with:
-          min_coverage: 70
-
       - name: Run Flutter Unit Tests
         run: flutter test

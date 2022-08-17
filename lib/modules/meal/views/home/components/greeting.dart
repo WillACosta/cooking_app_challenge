@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../application/components/components.dart';
-import '../../../../../application/utils/utils.dart';
 
 class Greeting extends StatelessWidget {
   final String userName;
@@ -30,14 +29,7 @@ class Greeting extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(50),
-          ),
-        ),
+        const CookingProfile(),
       ],
     );
   }

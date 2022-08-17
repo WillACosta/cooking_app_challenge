@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../application/shared/shared.dart';
-import '../../../../domain/repositories/meal_db_repository.dart';
+import '../../../../domain/repositories/contracts/meal_db_repository.dart';
 import 'meal_category_ui_state.dart';
 
 part 'meal_category_store.g.dart';

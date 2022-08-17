@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
 
-import '../../core/errors/domain_failures.dart';
-import '../../data/data_sources/meal_db_data_source.dart';
-import '../entities/entities.dart';
-import 'meal_db_repository.dart';
+import '../../../core/errors/errors.dart';
+import '../../../data/data_sources/remote/meal_db_data_source.dart';
+import '../../entities/entities.dart';
+import '../contracts/meal_db_repository.dart';
 
 @Injectable(as: MealDBRepository)
 class CMealDBRepository implements MealDBRepository {
