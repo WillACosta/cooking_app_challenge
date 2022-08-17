@@ -20,11 +20,11 @@ class MealDetailView extends StatefulWidget {
 
 class _MealDetailViewState extends State<MealDetailView> {
   final _store = serviceLocator<MeaDetailStore>();
-  late bool _showInstructions;
+  late int _activeTabIndex;
 
-  void _setShowInstructions(bool value) {
+  void _handleSelected(int value) {
     setState(() {
-      _showInstructions = value;
+      _activeTabIndex = value;
     });
   }
 
@@ -32,7 +32,7 @@ class _MealDetailViewState extends State<MealDetailView> {
   void initState() {
     super.initState();
 
-    _showInstructions = false;
+    _activeTabIndex = 0;
     _store.getMealByID(widget.meal.idMeal);
   }
 
@@ -49,13 +49,9 @@ class _MealDetailViewState extends State<MealDetailView> {
               child: MealGridItem(meal: widget.meal, isDetail: true),
             ),
             const VerticalWhiteSpace(45),
-            // const MealSwitch(),
-            Switch(
-              value: _showInstructions,
-              onChanged: _setShowInstructions,
-            ),
+            MealToggleTab(onChanged: _handleSelected),
             const VerticalWhiteSpace(30),
-            if (_showInstructions && _store.state.status == UiStatus.success)
+            if (_activeTabIndex == 1 && _store.state.status == UiStatus.success)
               Expanded(
                 child: SingleChildScrollView(
                   child: CText.xxs(

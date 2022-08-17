@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:cooking_home/modules/welcome/store/store.dart';
-import 'package:mocktail/mocktail.dart';
 
 void main() {
   late NameFormStore store;
